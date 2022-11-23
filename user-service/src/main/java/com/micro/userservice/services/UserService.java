@@ -1,6 +1,8 @@
 package com.micro.userservice.services;
 
 import com.micro.userservice.entities.User;
+import com.micro.userservice.payload.ApiResponse;
+import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
@@ -15,5 +17,5 @@ public interface UserService {
     //get user by id
     User getUserById(String userId);
 
-
+    ResponseEntity<ApiResponse> deleteUserById(String userId);
 }
