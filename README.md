@@ -3,6 +3,7 @@
 2. User Service
 3. Rating Service
 4. Eureka Service Registry
+5. Erueka Discovery Client
 
 #H2 database for Hotel Service
 #MySql for User service
