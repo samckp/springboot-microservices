@@ -1,4 +1,4 @@
-# springboot-microservices
+# springboot-microservices-using load balancer
 1. Hotel Service
 2. User Service
 3. Rating Service
