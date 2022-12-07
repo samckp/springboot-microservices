@@ -1,4 +1,4 @@
-package com.micro.userservice.services;
+package com.micro.userservice.config.services;
 
 import com.micro.userservice.entities.User;
 import com.micro.userservice.payload.ApiResponse;
