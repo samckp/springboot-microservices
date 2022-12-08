@@ -74,6 +74,7 @@
 				</configuration>
 			</plugin>
 		</plugins>
+		<finalName>hotel-service</finalName>
 	</build>
 
 </project>
