@@ -1,6 +1,6 @@
 # springboot-microservices-using load balancer
 1. Hotel Service
-2. User Service
+2. User Service  --- Feign client used to call Hotel-service , commented RestTemplate method to consume Hotel-service
 3. Rating Service
 4. Eureka Service Registry
 5. Erueka Discovery Client
@@ -13,3 +13,4 @@
 http://localhost:8083/h2
 
 Eureka server - http://localhost:8761/
+
