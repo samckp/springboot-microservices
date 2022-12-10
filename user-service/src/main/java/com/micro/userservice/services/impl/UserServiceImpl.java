@@ -1,6 +1,6 @@
-package com.micro.userservice.config.services.impl;
+package com.micro.userservice.services.impl;
 
-import com.micro.userservice.config.services.UserService;
+import com.micro.userservice.services.UserService;
 import com.micro.userservice.entities.Hotel;
 import com.micro.userservice.entities.Rating;
 import com.micro.userservice.entities.User;

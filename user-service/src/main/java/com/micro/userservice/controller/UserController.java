@@ -2,7 +2,7 @@ package com.micro.userservice.controller;
 
 import com.micro.userservice.entities.User;
 import com.micro.userservice.payload.ApiResponse;
-import com.micro.userservice.config.services.UserService;
+import com.micro.userservice.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
