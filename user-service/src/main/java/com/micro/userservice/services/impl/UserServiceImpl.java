@@ -1,5 +1,6 @@
 package com.micro.userservice.services.impl;
 
+import com.micro.userservice.external.services.RatingService;
 import com.micro.userservice.services.UserService;
 import com.micro.userservice.entities.Hotel;
 import com.micro.userservice.entities.Rating;
@@ -36,7 +37,8 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private HotelService hotelService;
-
+    @Autowired
+    private RatingService ratingService;
     @Autowired
     private UserRepository userRepository;
 
@@ -62,8 +64,19 @@ public class UserServiceImpl implements UserService {
         //TODO : implement getRating by userId
         for (User usr : users) {
 
-            ArrayList<Rating> userRating = restTemplate.getForObject(ratingUrl+usr.getUserId(), ArrayList.class);
-            usr.setRatings(userRating);
+          //  ArrayList<Rating> userRating = restTemplate.getForObject(ratingUrl+usr.getUserId(), ArrayList.class);
+            List<Rating> ratings = ratingService.getRatingByUserId(usr.getUserId());
+            usr.setRatings(ratings);
+
+            List<Rating> ratingList = ratings.stream().map(rating-> {
+
+                //  used Feign client
+                Hotel hotel = hotelService.getHotel(rating.getHotelId());
+                rating.setHotel(hotel);
+                return rating;
+            }).collect(Collectors.toList());
+
+            usr.setRatings(ratingList);
         }
 
         return users;
@@ -77,10 +90,13 @@ public class UserServiceImpl implements UserService {
         User user = userRepository.findById(userId).orElseThrow
                 (()->new ResourceNotFound("User not found with id " +userId));
 
-        // get Rating by userId
-        Rating[] userRating = restTemplate.getForObject(ratingUrl + user.getUserId(), Rating[].class);
+        // get Rating by userId using restTemplate
+        // Rating[] userRating = restTemplate.getForObject(ratingUrl + user.getUserId(), Rating[].class);
 
-        List<Rating> ratings = Arrays.stream(userRating).collect(Collectors.toList());
+        logger.info("Executing feign client to get ratings ");
+        // get Ratings by userId using  feign client
+        List<Rating> ratings =ratingService.getRatingByUserId(user.getUserId());
+
 
         //getHotels by hotelId for every users rating
         List<Rating> ratingList = ratings.stream().map(rating-> {
