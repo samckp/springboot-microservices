@@ -15,7 +15,7 @@ http://localhost:8083/h2  --H2DB
 
 Eureka server - http://localhost:8761/
 
-API-GATEWAY introduced on port no - 8085
+API-GATEWAY running on port no - 8085
 ------------
 http://localhost:8085/users
 http://localhost:8085/rating
