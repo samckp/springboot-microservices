@@ -20,5 +20,5 @@ API-GATEWAY running on port no - 8085
 http://localhost:8085/users
 http://localhost:8085/rating
 http://localhost:8085/hotel
-
+http://localhost:8085/staffs
 
