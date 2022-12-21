@@ -5,6 +5,7 @@
 4. Eureka Service Registry
 5. Erueka Discovery Client
 6. API-GATEWAY
+7. Configuration server
 
 #H2 database for Hotel Service
 #MySql for User service
@@ -21,4 +22,6 @@ http://localhost:8085/users
 http://localhost:8085/rating
 http://localhost:8085/hotel
 http://localhost:8085/staffs
+
+
 
