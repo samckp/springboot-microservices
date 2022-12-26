@@ -1,0 +1,13 @@
+server:
+  port: 8087
+
+spring:
+  application:
+    name: CONFIG-SERVER
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/samckp/microservice-config
+          clone-on-start: true
+
