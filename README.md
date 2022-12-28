@@ -10,7 +10,7 @@
 #H2 database for Hotel Service
 #MySql for User service
 #MongodDB for Rating Service 
-
+#Circuit breaker added - resilience4j
 
 http://localhost:8083/h2  --H2DB
 
