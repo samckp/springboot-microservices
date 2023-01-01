@@ -29,12 +29,6 @@ public class UserServiceImpl implements UserService {
 
     private Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
 
-    @Value("${rating.url}")
-    private String ratingUrl;
-
-    @Value("${hotel.url}")
-    private String hotelUrl;
-
     @Autowired
     private HotelService hotelService;
     @Autowired
@@ -90,21 +84,15 @@ public class UserServiceImpl implements UserService {
         User user = userRepository.findById(userId).orElseThrow
                 (()->new ResourceNotFound("User not found with id " +userId));
 
-        // get Rating by userId using restTemplate
-        // Rating[] userRating = restTemplate.getForObject(ratingUrl + user.getUserId(), Rating[].class);
 
-        logger.info("Executing feign client to get ratings ");
+        logger.info("Executing feign client to call rating service ");
         // get Ratings by userId using  feign client
-        List<Rating> ratings =ratingService.getRatingByUserId(user.getUserId());
-
+        List<Rating> ratings = ratingService.getRatingByUserId(user.getUserId());
 
         //getHotels by hotelId for every users rating
         List<Rating> ratingList = ratings.stream().map(rating-> {
 
-            //  ResponseEntity<Hotel> hotelEntity = restTemplate.getForEntity(hotelUrl + rating.getHotelId(), Hotel.class);
-            //  Hotel hotel=hotelEntity.getBody();
-            //  logger.info("response status code : " + hotelEntity.getStatusCode());
-
+            logger.info("Executing feign client to call Hotel service ");
             //  used Feign client
             Hotel hotel = hotelService.getHotel(rating.getHotelId());
 
