@@ -4,6 +4,7 @@ import com.micro.userservice.entities.User;
 import com.micro.userservice.payload.ApiResponse;
 import com.micro.userservice.services.UserService;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.retry.annotation.Retry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +28,8 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.CREATED).body(usr);
     }
     @GetMapping("/{userId}")
-    @CircuitBreaker(name="hotelRatingBreaker", fallbackMethod = "hotelRatingFallback")
+   // @CircuitBreaker(name="hotelRatingBreaker", fallbackMethod = "hotelRatingFallback")
+    @Retry(name = "hotelRatingBreaker", fallbackMethod = "hotelRatingFallback")
     public ResponseEntity<User> getUserById(@PathVariable String userId){
 
         User usr = userService.getUserById(userId);
