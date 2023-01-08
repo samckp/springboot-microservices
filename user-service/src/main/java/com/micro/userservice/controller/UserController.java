@@ -29,16 +29,19 @@ public class UserController {
     }
     @GetMapping("/{userId}")
    // @CircuitBreaker(name="hotelRatingBreaker", fallbackMethod = "hotelRatingFallback")
-    @Retry(name = "hotelRatingBreaker", fallbackMethod = "hotelRatingFallback")
+    @Retry(name = "ratingHotelService", fallbackMethod = "hotelRatingFallback")
     public ResponseEntity<User> getUserById(@PathVariable String userId){
 
         User usr = userService.getUserById(userId);
         return ResponseEntity.ok(usr);
     }
 
+    int retryCount =1;
     public ResponseEntity<User> hotelRatingFallback(String userId, Exception ex){
 
-        logger.info("Fallback is executed, service is down !!");
+//        logger.info("Fallback is executed, service is down !!");
+        logger.info("Retry count : {}", retryCount);
+        retryCount++;
         User user = User.builder().userId("dummyId")
                         .email("dummy@email.com")
                         .about("dummy about")
