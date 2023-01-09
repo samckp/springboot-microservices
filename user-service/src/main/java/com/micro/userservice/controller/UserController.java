@@ -4,6 +4,7 @@ import com.micro.userservice.entities.User;
 import com.micro.userservice.payload.ApiResponse;
 import com.micro.userservice.services.UserService;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
 import io.github.resilience4j.retry.annotation.Retry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,7 +30,8 @@ public class UserController {
     }
     @GetMapping("/{userId}")
    // @CircuitBreaker(name="hotelRatingBreaker", fallbackMethod = "hotelRatingFallback")
-    @Retry(name = "ratingHotelService", fallbackMethod = "hotelRatingFallback")
+//    @Retry(name = "ratingHotelService", fallbackMethod = "hotelRatingFallback")
+    @RateLimiter(name="userRateLimiter", fallbackMethod = "hotelRatingFallback" )
     public ResponseEntity<User> getUserById(@PathVariable String userId){
 
         User usr = userService.getUserById(userId);
