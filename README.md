@@ -11,6 +11,8 @@
 #MySql for User service
 #MongodDB for Rating Service 
 #Circuit breaker added - resilience4j.
+#Retry implemented - resilience4j
+#RateLimiter implemented - resilience4j
 
 http://localhost:8083/h2  --H2DB
 
@@ -32,3 +34,5 @@ http://localhost:8085/staffs
 5. hotel-service
 6. user-service
 
+----------------
+# Jmeter test result added for User Service
