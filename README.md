@@ -12,7 +12,7 @@
 #MongodDB for Rating Service 
 #Circuit breaker added - resilience4j.
 #Retry implemented - resilience4j
-#RateLimiter implemented - resilience4j
+#RateLimiter implemented - resilience4j.
 
 http://localhost:8083/h2  --H2DB
 
