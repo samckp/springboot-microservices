@@ -13,7 +13,7 @@
 #Circuit breaker added - resilience4j.
 #Retry implemented - resilience4j
 #RateLimiter implemented - resilience4j.
-#okta security added
+#okta security added.
 
 http://localhost:8083/h2  --H2DB
 
