@@ -27,6 +27,7 @@ http://localhost:8085/hotel
 http://localhost:8085/staffs
 
 
+
 ------Run Application in sequence----
 1. API-GATEWAY
 2. Service-Registry
